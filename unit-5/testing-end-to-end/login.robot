@@ -19,11 +19,10 @@ Valid Credentials Of Standard User Should Redirect to Products Page
     Products Page Should Be Open
 
 Invalid Credentials Should Display Error
-    Input Username           invalid_user
-    Input Password           secret_sauce
+    Input Username             invalid_user
+    Input Password             secret_sauce
     Submit Form
-    Element Text Should Be   xpath://*[@id="login_button_container"]/div/form/div[3]/h3[1]
-    ...                      Epic sadface: Username and password do not match any user in this service
+    Error Message Should Be    Epic sadface: Username and password do not match any user in this service
 
 Valid Credentials of Locked Out User Should Display Error
     # TODO: Add remaining code
@@ -50,5 +49,10 @@ Input Password
     [Arguments]    ${password}
     Input Text     password    ${password}
 
+Error Message Should Be
+    [Arguments]    ${message}
+    Element Text Should Be    xpath://*[@id="login_button_container"]/div/form/div[3]/h3[1]
+    ...                       ${message}
+
 Products Page Should Be Open
-    Element Text Should Be        xpath:/html/body/div/div/div/div[1]/div[2]/span    Products
+    Element Text Should Be    xpath:/html/body/div/div/div/div[1]/div[2]/span    Products

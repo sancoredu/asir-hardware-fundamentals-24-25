@@ -29,7 +29,6 @@ Adding Product Should Display Product On Cart Page
     # TODO: Add remaining code
     Sleep    2
 
-# TODO: Add Product Removal test cases
 
 *** Keywords ***
 Login
@@ -56,3 +55,15 @@ Input Password
 
 Products Page Should Be Open
     Element Text Should Be        xpath:/html/body/div/div/div/div[1]/div[2]/span    Products
+
+Add Product to the Cart
+    [Arguments]    ${product_id}
+    Click Button    id=add-to-cart-sauce-labs-${product_id}
+
+Cart Counter Should Be
+    [Arguments]    ${counter}
+    Element Text Should Be     xpath:/html/body/div/div/div/div[1]/div[1]/div[3]/a/span    ${counter}
+
+Cart Page Should Contain Product
+    [Arguments]    ${product_name}
+    Page Should Contain    ${product_name}
